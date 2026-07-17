@@ -46,7 +46,7 @@ docker run -p 8000:8000 \
   -e OPENAI_API_KEY=your_key \
   -e LLM_MODEL=gpt-4 \
   -e LLM_BASE_URL=https://api.openai.com/v1 \
-  -e NVIDIA_API_KEY=your_key \
+  -e LLM_API_KEY=your_key \
   agentic-browser-api
 ```
 
@@ -66,7 +66,7 @@ pip install -r requirements.txt
 cat > .env << EOF
 LLM_MODEL=gpt-4
 LLM_BASE_URL=https://api.openai.com/v1
-NVIDIA_API_KEY=your_api_key
+LLM_API_KEY=your_api_key
 LLM_TEMPERATURE=0.2
 BROWSER_USER_DATA_DIR=/path/to/profile  # (optional)
 BROWSER_USER_AGENT=Mozilla/5.0...       # (optional)
@@ -85,7 +85,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 | Variable | Required | Default | Purpose |
 |----------|----------|---------|---------|
 | `LLM_MODEL` | ✓ | - | Model name (e.g., `gpt-4`, `gpt-3.5-turbo`) |
-| `NVIDIA_API_KEY` | ✓ | - | API key for LLM provider |
+| `LLM_API_KEY` | ✓ | - | API key for LLM provider |
 | `LLM_BASE_URL` | ✓ | - | LLM API endpoint |
 | `LLM_TEMPERATURE` | ✗ | `0.2` | LLM randomness (0=deterministic, 1=creative) |
 | `BROWSER_USER_DATA_DIR` | ✗ | - | Persistent browser profile for cookies/history |
@@ -122,3 +122,4 @@ GET  /docs               → Swagger UI documentation
 - **Windows Compatible**: Uses `ProactorEventLoop` on Windows for proper async handling
 - **CORS Enabled**: Allows requests from any origin
 - **Graceful Cleanup**: Properly closes browser sessions on completion or error
+ 
